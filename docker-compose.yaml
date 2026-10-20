@@ -9,7 +9,7 @@ services:
     depends_on:
       - wordpress
   wordpress:
-    image: wordpress:7.1-php8.3-fpm
+    image: wordpress:7.1.2-php8.3-fpm
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_NAME: ${WP_DB_NAME}
@@ -17,6 +17,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${WP_DB_PASSWORD}
     volumes:
     - wp_data:/var/www/html
+    - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
     depends_on:
       - db
   db:
